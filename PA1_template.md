@@ -186,17 +186,14 @@ weekday_data <- activity_no_NA[ !activity_no_NA$weekend]
 
 weekend_data <- activity_no_NA[ activity_no_NA$weekend]
 
-aggdt3 <- aggregate( steps~interval, weekday_data, mean)
+par( mfrow = c( 1,2), oma = c(0, 0, 2, 0))
 
-with( aggdt3, plot( interval, steps,  type = "l" , ylab = "average number of steps", xlab = "interval", main = "Average number of steps across week days"))
+aggdt3 <- aggregate( steps~interval, weekday_data, mean)
+aggdt4 <- aggregate( steps~interval, weekend_data, mean)
+
+with( aggdt3, plot( interval, steps,  type = "l" , ylab = "average number of steps", xlab = "interval", main = "week days" , ylim = c(0,300)))
+
+with( aggdt4, plot( interval, steps,  type = "l" , ylab = "average number of steps", xlab = "interval", main = "week ends", ylim = c(0,300)))
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
-
-```r
-aggdt4 <- aggregate( steps~interval, weekend_data, mean)
-
-with( aggdt4, plot( interval, steps,  type = "l" , ylab = "average number of steps", xlab = "interval", main = "Average number of steps across weekend days"))
-```
-
-![](PA1_template_files/figure-html/unnamed-chunk-6-2.png)<!-- -->
